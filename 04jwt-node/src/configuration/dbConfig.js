@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-mongoose.connect("mongodb://localhost:27017/04jwt-node");
+mongoose.connect("mongodb://127.0.0.1:27017/04jwt-node");
 
 mongoose.connection.on("connected", () => {
   console.log("connected to mongodb");

@@ -1,5 +1,5 @@
-import user from "../models/user";
-import { hashPassword } from "../lib/crypto";
+import User from "../models/user.js";
+import { hashPassword } from "../lib/crypto.js";
 
 const createUser = async (userData) => {
   const { name, email, password } = userData;
