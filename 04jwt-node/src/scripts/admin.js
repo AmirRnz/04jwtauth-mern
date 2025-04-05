@@ -1,7 +1,7 @@
-import User from "../models/user";
-import hashPassword from "../lib/crypto";
+import User from "../models/user.js";
+import { hashPassword } from "../lib/crypto.js";
 
-async function createAdminAccount() {
+const createAdminAccount = async () => {
   try {
     const existingAdmin = await User.findOne({ email: "admin@test.com" });
     if (!existingAdmin) {
@@ -21,5 +21,5 @@ async function createAdminAccount() {
   } catch (error) {
     console.log(error);
   }
-}
+};
 export default createAdminAccount;
