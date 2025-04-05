@@ -1,13 +1,19 @@
 import express from "express";
 import signupRoute from "./routes/signup.js";
 import bodyParser from "body-parser";
-
+import cors from "cors";
+import createAdminAccount from "./scripts/admin.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(
+  cors({
+    origin: "http://localhost:5173", // or wherever your frontend runs
+    credentials: true,
+  })
+);
+createAdminAccount();
 app.use("/user", signupRoute);
 
 app.listen(PORT, () => {
