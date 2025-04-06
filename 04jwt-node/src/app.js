@@ -3,6 +3,8 @@ import signupRoute from "./routes/signup.js";
 import bodyParser from "body-parser";
 import cors from "cors";
 import createAdminAccount from "./scripts/admin.js";
+import loginRoute from "./routes/login.js";
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -15,7 +17,7 @@ app.use(
 );
 createAdminAccount();
 app.use("/user", signupRoute);
-
+app.use("/auth", loginRoute);
 app.listen(PORT, () => {
   console.log(`server is running on: http://localhost:${PORT}`);
 });

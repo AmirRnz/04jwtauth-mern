@@ -5,7 +5,7 @@ const createAdminAccount = async () => {
   try {
     const existingAdmin = await User.findOne({ email: "admin@test.com" });
     if (!existingAdmin) {
-      const password = "mySecurePassword";
+      const password = "admin";
       const hashedPassword = await hashPassword(password);
       const newAdmin = new User({
         email: "admin@test.com",

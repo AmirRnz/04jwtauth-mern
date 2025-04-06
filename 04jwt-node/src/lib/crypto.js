@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-export function hashPassword(password, saltRounds = 10) {
+export const hashPassword = (password, saltRounds = 10) => {
   return new Promise((resolve, reject) => {
     const salt = crypto.randomBytes(saltRounds).toString("hex"); // Generate salt
     crypto.scrypt(password, salt, 64, (err, derivedKey) => {
@@ -8,9 +8,9 @@ export function hashPassword(password, saltRounds = 10) {
       resolve(`${salt}:${derivedKey.toString("hex")}`); // Store salt & hash together
     });
   });
-}
+};
 
-export function comparePasswords(password, storedHash) {
+export const comparePasswords = (password, storedHash) => {
   return new Promise((resolve, reject) => {
     const [salt, key] = storedHash.split(":"); // Extract salt
     crypto.scrypt(password, salt, 64, (err, derivedKey) => {
@@ -18,7 +18,7 @@ export function comparePasswords(password, storedHash) {
       resolve(key === derivedKey.toString("hex")); // Compare hashes
     });
   });
-}
+};
 
 // async function test() {
 //   const password = "mySecurePassword";
