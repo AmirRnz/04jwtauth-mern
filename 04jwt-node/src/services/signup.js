@@ -7,7 +7,7 @@ const createUser = async (userData) => {
   const createdUser = new User({
     name,
     email,
-    hashedPassword,
+    password: hashedPassword,
     role: "customer",
   });
   const savedUser = await createdUser.save();
